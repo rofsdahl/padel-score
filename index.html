@@ -99,10 +99,10 @@
 <body tabindex="0">
 
 <div id="topbar">
-  <div class="ctrl" onclick="undo()">⌫</div>
+  <div class="ctrl" onclick="reset()">♻</div>
   <div id="games-left"></div>
   <div id="games-right"></div>
-  <div class="ctrl" onclick="reset()">♻</div>
+  <div class="ctrl" onclick="undo()">⌫</div>
 </div>
 
 <div id="scores">
@@ -231,7 +231,7 @@
     const t = (Math.sin(phase) + 1) / 2; // Cycles 0->1->0->1
     const b = Math.round(200 + t * 55);
     ctx.fillStyle = `rgb(${b},${b},${b})`;
-    ctx.fillRect(0, 0, 20, 1000);
+    ctx.fillRect(0, 0, 20, 800);
     requestAnimationFrame(draw);
   })();
 </script>
