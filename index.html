@@ -57,7 +57,7 @@
 </head>
 <body tabindex="0">
 
-  <h1>Button Tester 2026-06-27 13:44</h1>
+  <h1>Button Tester - canvas</h1>
   <div id="event-name"></div>
 
 <script>
@@ -69,21 +69,29 @@
 
   document.body.focus();
 
-  // Keep screen awake
+  // Keep screen awake — Wake Lock API
   let wakeLock = null;
   async function requestWakeLock() {
     try {
       wakeLock = await navigator.wakeLock.request('screen');
-    } catch (e) {
-      console.log('Wake lock failed:', e);
-    }
+    } catch (e) {}
   }
   requestWakeLock();
-
-  // Re-acquire after tab becomes visible again
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') requestWakeLock();
   });
+
+  // Fallback: tiny canvas that redraws every second — iOS keeps screen on for active canvas
+  const canvas = document.createElement('canvas');
+  canvas.width = 1; canvas.height = 1;
+  canvas.style.cssText = 'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0.01';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  let tick = 0;
+  setInterval(() => {
+    ctx.fillStyle = tick++ % 2 === 0 ? '#000001' : '#000000';
+    ctx.fillRect(0, 0, 1, 1);
+  }, 1000);
 
   window.addEventListener('keydown', (e) => {
     if (e.key === ' ') e.preventDefault();
