@@ -12,7 +12,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: green;
+      background: blue;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       width: 100vw;
@@ -21,6 +21,7 @@
       flex-direction: column;
       overflow: hidden;
       user-select: none;
+      -webkit-user-select: none;
     }
 
     #topbar {
@@ -35,8 +36,6 @@
       color: #fff;
       font-size: 4vw;
       padding: 0.5vh 1vw;
-      /*cursor: pointer;*/
-      /*user-select: none;*/
       -webkit-tap-highlight-color: transparent;
     }
     .ctrl:active { color: #aaa; }
@@ -49,19 +48,18 @@
     }
 
     #scores {
-      flex: 1;
       display: flex;
+      flex: 1;
       align-items: stretch;
       overflow: hidden;
     }
 
     #side-left, #side-right {
-      flex: 1;
       display: flex;
+      flex: 1;
       align-items: flex-start;
       justify-content: center;
       overflow: hidden;
-      /*cursor: pointer;*/
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -73,19 +71,19 @@
     }
 
     #divider {
-      width: 60px;
       display: flex;
       flex-shrink: 0;
       align-items: flex-start;
       justify-content: center;
+      width: 60px;
     }
 
     #keepalive {
       display: block;
       width: 20px;
       height: 100%;
-      border-radius: 3px;
-      margin: 0;
+      /*border-radius: 3px;*/
+      /*margin: 0;*/
     }
   </style>
 </head>
