@@ -22,8 +22,8 @@
       overflow: hidden;
     }
 
-    /* Top bar */
-    #topbar { background: blue;
+    #topbar {
+      background: blue;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -32,23 +32,22 @@
     }
 
     .ctrl {
-      font-size: 4vw;
       color: #fff;
+      font-size: 4vw;
+      padding: 0.5vh 1vw;
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      padding: 0.5vh 1vw;
     }
     .ctrl:active { color: #aaa; }
 
     #games-left, #games-right {
       display: flex;
-      gap: 1.5vw;
       align-items: center;
       font-size: 6vw;
+      gap: 1.5vw;
     }
 
-    /* Main score area */
     #scores {
       flex: 1;
       display: flex;
@@ -56,14 +55,15 @@
       overflow: hidden;
     }
 
-    #side-left, #side-right { background: blue;
+    #side-left, #side-right {
+      background: blue;
       flex: 1;
       display: flex;
       align-items: flex-start;
       justify-content: center;
+      overflow: hidden;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      overflow: hidden;
     }
 
     .point {
@@ -74,19 +74,19 @@
     }
 
     #divider {
+      background: blue;
       width: 60px;
-      flex-shrink: 0;
       display: flex;
+      flex-shrink: 0;
       align-items: flex-start;
       justify-content: center;
-      background: blue;
     }
 
     #keepalive {
+      display: block;
       width: 20px;
       height: 100%;
       border-radius: 3px;
-      display: block;
       margin: 0;
     }
   </style>
