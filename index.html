@@ -128,7 +128,7 @@
   }
 
   function reset() {
-    let serving = 1 - state.serving;
+    let serving = history.length === 0 ? 1 - state.serving : state.serving;
     state = freshState(serving);
     history = [];
     render();
