@@ -23,14 +23,7 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    #left {
-      /*background: green;*/
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    #right {
-      /*background: red;*/
+    #left, #right {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -134,7 +127,10 @@
   }
 
   function undo() {
-    if (history.length === 0) return;
+    if (history.length === 0) {
+      state.serving = 1 - state.serving;
+      return;
+    }
     state = history.pop();
     render();
   }
