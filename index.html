@@ -160,10 +160,10 @@
     pressCount++;
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (pressCount === 1) addPoint(0);
-      else if (pressCount === 2) addPoint(1);
+      if (pressCount === 1) addPoint(state.serving);
+      else if (pressCount === 2) addPoint(1 - state.serving);
       else if (pressCount === 3) undo();
-      else if (pressCount >= 5) reset();
+      else if (pressCount >= 4) reset();
       pressCount = 0;
     }, WINDOW_MS);
   });
