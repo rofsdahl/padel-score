@@ -209,7 +209,7 @@
   (function draw() {
     phase += 0.015;
     const t = (Math.sin(phase) + 1) / 2;
-    const b = Math.round(220 + t * 25);
+    const b = Math.round(250 + t * 5);
     ctx.fillStyle = `rgb(${b},${b},${b})`;
     ctx.fillRect(0, 0, 20, 1000);
     requestAnimationFrame(draw);
