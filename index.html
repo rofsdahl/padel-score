@@ -295,8 +295,8 @@ document.addEventListener('pointerdown', e => {
 document.addEventListener('pointerup', e => {
   const dx = e.clientX - startX;
   showDebug(`dx ${dx}`);
-  //if (dx > 50) showDebug(`scoreRight ${dx}`);
-  //if (dx < -50) showDebug('scoreLeft ');
+  if (dx > 50) addPoint(0);
+  if (dx < -50) addPoint(1);
 });
 
 </script>
