@@ -232,13 +232,12 @@
   });
   document.getElementById('divider').addEventListener('touchend', () => clearTimeout(longPressTimer));
 
-/*
   function showDebug(msg) {
     if (!debug) return;
     overlay.textContent = msg;
   }
-*/
 
+/*
   const log = [];
   const MAX_LINES = 20; 
 
@@ -254,6 +253,7 @@
     overlay.textContent = log.join('\n');
     overlay.style.whiteSpace = 'pre';
   }
+*/
 
   /*
   document.addEventListener('keydown', e => showDebug(`key: ${e.key} code: ${e.code}`));
@@ -262,18 +262,18 @@
   document.addEventListener('touchstart', e => showDebug(`touch: ${e.touches.length} finger(s)`));
   */
 
-
+/*
 [
   //'touchstart',
   //'touchmove',
   //'touchend',
   'pointerdown',
-  'pointermove',
+  //'pointermove',
   'pointerup',
-  'mousedown',
-  'mousemove',
-  'mouseup',
-  'wheel'
+  //'mousedown',
+  //'mousemove',
+  //'mouseup',
+  //'wheel'
 ].forEach(type => {
   document.addEventListener(type, e => {
     //console.log(type, e);
@@ -283,6 +283,20 @@
       `${type} pt=${e.pointerType || '-'} btn=${e.button ?? '-'}`
     );
   }, { passive: false });
+});
+*/
+
+let startX;
+
+document.addEventListener('pointerdown', e => {
+  startX = e.clientX;
+});
+
+document.addEventListener('pointerup', e => {
+  const dx = e.clientX - startX;
+  showDebug(`dx ${dx}`);
+  //if (dx > 50) showDebug(`scoreRight ${dx}`);
+  //if (dx < -50) showDebug('scoreLeft ');
 });
 
 </script>
