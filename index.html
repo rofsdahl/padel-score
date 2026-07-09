@@ -237,11 +237,31 @@
     overlay.textContent = msg;
   }
 
+  /*
   document.addEventListener('keydown', e => showDebug(`key: ${e.key} code: ${e.code}`));
   document.addEventListener('wheel', e => showDebug(`wheel: ${e.deltaY > 0 ? '↓' : '↑'} (${Math.round(e.deltaY)})`));
   document.addEventListener('mousedown', e => showDebug(`mouse: button ${e.button}`));
   document.addEventListener('touchstart', e => showDebug(`touch: ${e.touches.length} finger(s)`));
+  */
 
+
+[
+  'touchstart',
+  'touchmove',
+  'touchend',
+  'pointerdown',
+  'pointermove',
+  'pointerup',
+  'mousedown',
+  'mousemove',
+  'mouseup',
+  'wheel'
+].forEach(type => {
+  document.addEventListener(type, e => {
+    //console.log(type, e);
+    showDebug(`type: ${type}`)
+  }, { passive: false });
+});
 </script>
 </body>
 </html>
