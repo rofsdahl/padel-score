@@ -158,6 +158,7 @@
   let count = 0;
   let timer = null;
 
+/*
   document.body.focus();
   window.addEventListener('keydown', e => { if (e.key === ' ') e.preventDefault(); }, { capture: true });
   document.addEventListener('keydown', e => {
@@ -173,6 +174,7 @@
       count = 0;
     }, 1000);
   });
+*/
 
   // ── Wake lock ──────────────────────────────────────────────────
   async function requestWakeLock() {
@@ -217,6 +219,7 @@
   })();
 
   // ── Debug overlay ──────────────────────────────────────────────
+/*
   let debug = false;
   const overlay = document.createElement('div');
   overlay.style.cssText = 'display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:white;font-size:3vw;padding:1vh 3vw;border-radius:8px;text-align:center;pointer-events:none;';
@@ -236,6 +239,7 @@
     if (!debug) return;
     overlay.textContent = msg;
   }
+*/
 
 /*
   const log = [];
