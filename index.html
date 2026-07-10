@@ -219,7 +219,7 @@
   })();
 
   // ── Debug overlay ──────────────────────────────────────────────
-/*
+
   let debug = false;
   const overlay = document.createElement('div');
   overlay.style.cssText = 'display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:white;font-size:3vw;padding:1vh 3vw;border-radius:8px;text-align:center;pointer-events:none;';
@@ -239,7 +239,7 @@
     if (!debug) return;
     overlay.textContent = msg;
   }
-*/
+
 
 /*
   const log = [];
@@ -257,51 +257,43 @@
     overlay.textContent = log.join('\n');
     overlay.style.whiteSpace = 'pre';
   }
+
+  [
+    'touchstart',
+    'touchmove',
+    'touchend',
+    'pointerdown',
+    'pointermove',
+    'pointerup',
+    'mousedown',
+    'mousemove',
+    'mouseup',
+    'wheel'
+  ].forEach(type => {
+    document.addEventListener(type, e => {
+      showDebug(`${type} pt=${e.pointerType || '-'} btn=${e.button ?? '-'}`);
+    }, { passive: false });
+  });
 */
 
-  /*
-  document.addEventListener('keydown', e => showDebug(`key: ${e.key} code: ${e.code}`));
-  document.addEventListener('wheel', e => showDebug(`wheel: ${e.deltaY > 0 ? '↓' : '↑'} (${Math.round(e.deltaY)})`));
-  document.addEventListener('mousedown', e => showDebug(`mouse: button ${e.button}`));
-  document.addEventListener('touchstart', e => showDebug(`touch: ${e.touches.length} finger(s)`));
-  */
+  let startX;
+  let startY;
 
-/*
-[
-  //'touchstart',
-  //'touchmove',
-  //'touchend',
-  'pointerdown',
-  //'pointermove',
-  'pointerup',
-  //'mousedown',
-  //'mousemove',
-  //'mouseup',
-  //'wheel'
-].forEach(type => {
-  document.addEventListener(type, e => {
-    //console.log(type, e);
-    //showDebug(`type: ${type}`)
-    
-    showDebug(
-      `${type} pt=${e.pointerType || '-'} btn=${e.button ?? '-'}`
-    );
-  }, { passive: false });
-});
-*/
+  document.addEventListener('pointerdown', e => {
+    startX = e.clientX;
+    startY = e.clientY;
+  });
 
-let startX;
+  document.addEventListener('pointerup', e => {
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    showDebug(`dx ${dx}, dy ${dy}`);
+    if (dx > 50) addPoint(0);
+    if (dx < -50) addPoint(1);
+  });
 
-document.addEventListener('pointerdown', e => {
-  startX = e.clientX;
-});
-
-document.addEventListener('pointerup', e => {
-  const dx = e.clientX - startX;
-  showDebug(`dx ${dx}`);
-  if (dx > 50) addPoint(0);
-  if (dx < -50) addPoint(1);
-});
+  // Disable default touch scroll behavior
+  document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
 </script>
 </body>
