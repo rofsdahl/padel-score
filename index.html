@@ -163,6 +163,7 @@
     startY = e.clientY;
   });
   document.addEventListener('pointerup', e => {
+    showDebug(`${ac.state}`);
     const dx = Math.trunc(e.clientX - startX);
     const dy = Math.trunc(e.clientY - startY);
     if      (dx >  100) addPoint(0);
@@ -180,6 +181,7 @@
     if (!ac) {
       ac = new (window.AudioContext || window.webkitAudioContext)();
     }
+    showDebug(`${ac.state}`);
     if (ac.state !== 'running') {
       showDebug('ac.resume');
       return ac.resume();
