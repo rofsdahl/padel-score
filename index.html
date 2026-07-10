@@ -160,12 +160,13 @@
   document.addEventListener('pointerdown', e => {
     startX = e.clientX;
     startY = e.clientY;
+    showDebug(`trusted=${e.isTrusted} audio=${ac.state}`);
     
     // Resume AudioContext if suspended
-    if (ac.state === 'suspended') {
-      ac.resume();
-      showDebug(`Chime sus->${ac.state}`);
-    }
+    //if (ac.state === 'suspended') {
+    //  ac.resume();
+    //  showDebug(`Chime sus->${ac.state}`);
+    //}
   });
 
   document.addEventListener('pointerup', e => {
