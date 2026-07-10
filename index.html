@@ -125,11 +125,8 @@
   }
 
   function undo() {
-    if (history.length > 0) {
-      state = history.pop();
-    } else {
-      state.serving = 1 - state.serving;
-    }
+    if (history.length === 0) return; 
+    state = history.pop();
     render();
   }
 
