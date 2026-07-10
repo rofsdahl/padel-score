@@ -58,7 +58,7 @@
 
 <div id="left">
   <div id="top-left">
-    <div onclick="reset()">⊕</div>
+    <div /*onclick="reset()"*/>⊕</div>
     <div id="serve-left"></div>
     <div id="games-left"></div>
   </div>
@@ -71,7 +71,7 @@
   <div id="top-right">
     <div id="games-right"></div>
     <div id="serve-right"></div>
-    <div onclick="undo()">⌫</div>
+    <div /*onclick="undo()"*/>⌫</div>
   </div>
   <div id="points-right" /*onclick="addPoint(1)"*/>0</div>
 </div>
@@ -154,28 +154,6 @@
 
   render();
 
-  // ── Button input ───────────────────────────────────────────────
-  let count = 0;
-  let timer = null;
-
-/*
-  document.body.focus();
-  window.addEventListener('keydown', e => { if (e.key === ' ') e.preventDefault(); }, { capture: true });
-  document.addEventListener('keydown', e => {
-    if (e.key !== ' ' || e.repeat) return;
-    e.preventDefault();
-    count++;
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      if (count === 1) addPoint(state.serving);
-      else if (count === 2) addPoint(1 - state.serving);
-      else if (count === 3) undo();
-      else if (count >= 4) reset();
-      count = 0;
-    }, 1000);
-  });
-*/
-
   // ── Wake lock ──────────────────────────────────────────────────
   async function requestWakeLock() {
     try { await navigator.wakeLock.request('screen'); } catch(e) {}
@@ -238,43 +216,10 @@
   function showDebug(msg) {
     if (!debug) return;
     overlay.textContent = msg;
-  }
-
-
-/*
-  const log = [];
-  const MAX_LINES = 20; 
-
-  function showDebug(msg) {
-    if (!debug) return;
-
-    const t = (performance.now() / 1000).toFixed(3);
-    log.push(`${t}  ${msg}`);
-
-    if (log.length > MAX_LINES)
-      log.shift();
-
-    overlay.textContent = log.join('\n');
     overlay.style.whiteSpace = 'pre';
   }
 
-  [
-    'touchstart',
-    'touchmove',
-    'touchend',
-    'pointerdown',
-    'pointermove',
-    'pointerup',
-    'mousedown',
-    'mousemove',
-    'mouseup',
-    'wheel'
-  ].forEach(type => {
-    document.addEventListener(type, e => {
-      showDebug(`${type} pt=${e.pointerType || '-'} btn=${e.button ?? '-'}`);
-    }, { passive: false });
-  });
-*/
+  // ── Pointer move input ──────────────────────────────────────────────
 
   let startX;
   let startY;
@@ -290,8 +235,8 @@
     showDebug(`dx: ${dx}\ndy: ${dy}`);
     if      (dx >  100) addPoint(0);
     else if (dx < -100) addPoint(1);
-    else if (dy >  100) undo();
-    else if (dy < -100) reset();
+    else if (dy >  100) reset();
+    else if (dy < -100) undo();
   });
 
   // Disable default touch scroll behavior
