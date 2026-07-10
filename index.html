@@ -90,7 +90,7 @@
     const opposite = 1 - side;
     const p = state.points;
 
-    chime(side === state.serving);
+    //chime(side === state.serving);
     if (p[side] < 3) {
       p[side]++;
     } else if (p[side] === 3 && p[opposite] < 3) {
@@ -105,6 +105,7 @@
     render();
   }
 
+/*
   function chime(highPitch) {
     const ac = new (window.AudioContext || window.webkitAudioContext)();
     const osc = ac.createOscillator();
@@ -117,6 +118,7 @@
     osc.start();
     osc.stop(ac.currentTime + 0.4);
   }
+*/
 
   function winGame(side) {
     state.points = [0, 0];
@@ -230,8 +232,8 @@
   });
 
   document.addEventListener('pointerup', e => {
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
+    const dx = Math.trunc(e.clientX - startX);
+    const dy = Math.trunc(e.clientY - startY);
     showDebug(`dx: ${dx}\ndy: ${dy}`);
     if      (dx >  100) addPoint(0);
     else if (dx < -100) addPoint(1);
