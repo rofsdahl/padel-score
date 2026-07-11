@@ -134,6 +134,7 @@
   }
 
   function reset() {
+    overlay.display='block';
     let serving = history.length === 0 ? 1 - state.serving : state.serving;
     state = freshState(serving);
     history = [];
@@ -160,11 +161,11 @@
   document.addEventListener('pointerdown', e => {
     startX = e.clientX;
     startY = e.clientY;
+    overlay.display='none';
   });
   document.addEventListener('pointerup', e => {
     const dx = Math.trunc(e.clientX - startX);
     const dy = Math.trunc(e.clientY - startY);
-    overlay.textContent=`${dx},${dy}`;
     if      (dx >  100) addPoint(0);
     else if (dx < -100) addPoint(1);
     else if (dy >  100) reset();
