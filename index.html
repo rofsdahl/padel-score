@@ -127,6 +127,9 @@
 
   render();
 
+  // Disable default touch scroll behavior
+  document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+
   // ── Splash screen ──────────────────────────────────────────────
   const splash = document.createElement('div');
   splash.style.cssText = `
@@ -156,9 +159,6 @@
     else if (dy >  100) reset();
     else if (dy < -100) undo();
   });
-
-  // Disable default touch scroll behavior
-  document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
   // ── Wake lock ──────────────────────────────────────────────────
   async function requestWakeLock() {
