@@ -58,9 +58,8 @@
 
 <div id="left">
   <div id="top-left">
-    <div>⊕↑</div>
-    <div id="serve-left"></div>
     <div id="games-left"></div>
+    <div id="serve-left"></div>
   </div>
   <div id="points-left">0</div>
 </div>
@@ -68,10 +67,9 @@
   <video id="keepalive" autoplay playsinline muted loop></video>
 </div>
 <div id="right">
-  <div id="top-right">
-    <div id="games-right"></div>
+  <div id="top-right">   
     <div id="serve-right"></div>
-    <div>↓⌫</div>
+    <div id="games-right"></div>
   </div>
   <div id="points-right">0</div>
 </div>
@@ -86,19 +84,13 @@
 
   function addPoint(side) {
     history.push(JSON.parse(JSON.stringify(state)));
-    const opposite = 1 - side;
+    const opp = 1 - side;
     const p = state.points;
-    if (p[side] < 3) {
-      p[side]++;
-    } else if (p[side] === 4) {
-      winGame(side);
-    } else if (p[opposite] < 3) {
-      winGame(side);
-    } else if (p[opposite] === 3) {
-      p[side] = 4;
-    }  else if (p[opposite] === 4) {
-      p[opposite] = 3;
-    }
+    if (p[side] < 3) p[side]++;
+    else if (p[side] === 4) winGame(side);
+    else if (p[opp] < 3) winGame(side);
+    else if (p[opp] === 3) p[side] = 4;
+    else if (p[opp] === 4) p[opp] = 3;
     render();
   }
 
