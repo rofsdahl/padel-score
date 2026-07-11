@@ -126,6 +126,20 @@
 
   render();
 
+  // ── Splash screen ──────────────────────────────────────────────
+  const splash = document.createElement('div');
+  splash.style.cssText = `
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.65);
+    font-size: 5vw; font-weight: 400;
+    line-height: 2.2; text-align: center;
+    z-index: 10;
+  `;
+  splash.innerHTML = '<div>↑ reset / switch serve<br>↓ undo<br>← point left<br>→ point right</div>';
+  document.body.appendChild(splash);
+  splash.addEventListener('pointerdown', () => splash.remove(), { once: true });
+
   // ── Pointer move input ──────────────────────────────────────────────
   let startX;
   let startY;
