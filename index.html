@@ -57,9 +57,8 @@
 <body tabindex="0">
 <div id="left">
   <div id="top-left">
-    <div></div>
-    <div id="games-left"></div>
     <div id="serve-left"></div>
+    <div id="games-left"></div>
   </div>
   <div id="points-left">0</div>
 </div>
@@ -67,10 +66,9 @@
   <video id="keepalive" autoplay playsinline muted loop></video>
 </div>
 <div id="right">
-  <div id="top-right">   
-    <div id="serve-right"></div>
+  <div id="top-right">
     <div id="games-right"></div>
-    <div></div>
+    <div id="serve-right"></div>
   </div>
   <div id="points-right">0</div>
 </div>
@@ -102,9 +100,10 @@
     const p = state.points;
     if (p[side] < 3) p[side]++;
     else if (p[side] === 4) winGame(side);
-    else if (p[other] < 3) winGame(side);
-    else if (p[other] === 3) p[side] = 4;
+    else if (p[other]  < 3) winGame(side);
+    else if (p[other] === 3) p[side]  = 4;
     else if (p[other] === 4) p[other] = 3;
+    
     render();
   }
 
