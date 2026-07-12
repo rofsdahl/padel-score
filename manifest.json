@@ -1,6 +1,6 @@
 {
-  "name": "Court Score",
-  "short_name": "Court Score",
+  "name": "Padel Score",
+  "short_name": "Padel Score",
   "start_url": "/court-score/",
   "display": "standalone",
   "background_color": "#0000ff",
