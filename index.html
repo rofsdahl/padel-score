@@ -52,6 +52,21 @@
       height: 100%;
       object-fit: fill;
     }
+    #splash {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 5vw;
+      font-weight: 400;
+      line-height: 2.2;
+      text-align: center;
+      padding: 4vw 6vw;
+      border-radius: 16px;
+      z-index: 10;
+      transition: opacity 0.4s;
+    }
   </style>
 </head>
 <body tabindex="0">
@@ -72,6 +87,12 @@
   </div>
   <div id="points-right">0</div>
 </div>
+<div id="splash">
+  ↑ reset/switch<br/>
+  ← add point →<br/>
+  ↓ undo
+</div>
+
 <script>
   const POINTS = ['0', '15', '30', '40', 'AD'];
   let history = [];
@@ -131,28 +152,10 @@
   document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
   // ── Splash screen ──────────────────────────────────────────────
-  const splash = document.createElement('div');
-  splash.style.cssText = `
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 5vw;
-    font-weight: 400;
-    line-height: 2.2;
-    text-align: center;
-    padding: 4vw 6vw;
-    border-radius: 16px;
-    z-index: 10;
-    transition: opacity 0.4s;
-  `;
-  splash.innerHTML = '↑ reset/switch<br>← add point →<br>↓ undo';
-  document.body.appendChild(splash);
-
   let splashTimer = null;
 
   function showSplash() {
+    const splash = document.getElementById('splash');
     splash.style.opacity = '1';
     splash.style.display = 'block';
     clearTimeout(splashTimer);
@@ -160,6 +163,7 @@
   }
 
   function hideSplash() {
+    const splash = document.getElementById('splash');
     splash.style.opacity = '0';
     setTimeout(() => splash.style.display = 'none', 400);
   }
