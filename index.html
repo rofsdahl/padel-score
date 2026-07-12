@@ -155,21 +155,16 @@
 
   // ── Splash/info ──────────────────────────────────────────────
   let splashTimer = null;
-
   function showSplash() {
     const splash = document.getElementById('splash');
     splash.style.opacity = '1';
     splash.style.display = 'block';
     clearTimeout(splashTimer);
-    splashTimer = setTimeout(hideSplash, 2000);
+    splashTimer = setTimeout(() => {
+      splash.style.opacity = '0';
+      setTimeout(() => splash.style.display = 'none', 400);
+    }, 2000);
   }
-
-  function hideSplash() {
-    const splash = document.getElementById('splash');
-    splash.style.opacity = '0';
-    setTimeout(() => splash.style.display = 'none', 400);
-  }
-
   showSplash();
 
   // ── Pointer move input ──────────────────────────────────────────────
