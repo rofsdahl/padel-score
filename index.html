@@ -100,6 +100,7 @@
 </div>
 
 <script>
+  // ── Scoring ────────────────────────────────────────────────────
   const POINTS = ['0', '15', '30', '40', 'AD'];
   let history = [];
   let state = freshState(0);
@@ -152,7 +153,7 @@
   }
   render();
 
-  // ── Info ──────────────────────────────────────────────
+  // ── Info ───────────────────────────────────────────────────────
   let infoTimer = null;
   function showInfo() {
     const info = document.getElementById('info');
@@ -166,7 +167,7 @@
   }
   showInfo();
 
-  // ── Pointer move input ──────────────────────────────────────────────
+  // ── Pointer move input ─────────────────────────────────────────
   let startX;
   let startY;
   document.addEventListener('pointerdown', e => {
