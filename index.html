@@ -29,9 +29,15 @@
       display: flex;
       flex-direction: column;
     }
-    #games-left, #games-right {
+    #games-left {
       padding-right: 3vw;
-      text-align: center;
+      text-align: right;
+      font-size: 14vw;
+      font-weight: 800;
+    }
+    #games-right {
+      padding-right: 3vw;
+      text-align: left;
       font-size: 14vw;
       font-weight: 800;
     }
@@ -72,20 +78,14 @@
 </head>
 <body tabindex="0">
 <div id="left">
-  <div id="top-left>
-    <div/>
-    <div id="games-left">0</div>
-  </div
+  <div id="games-left">0</div>
   <div id="points-left">0</div>
 </div>
 <div id="divider">
   <video id="keepalive" autoplay playsinline muted loop></video>
 </div>
 <div id="right">
-  <div id="top-left>
-    <div id="games-right">0</div>
-    <div/>
-  </div>
+  <div id="games-right">0</div>
   <div id="points-right">0</div>
 </div>
 <div id="info">
