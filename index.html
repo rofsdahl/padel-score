@@ -18,6 +18,8 @@
       background: black;
       color: white;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14vw;
+      font-weight: 800;
       width: 100vw;
       height: 100dvh;
       display: flex;
@@ -29,17 +31,9 @@
       display: flex;
       flex-direction: column;
     }
-    #games-left {
-      padding-right: 3vw;
-      text-align: right;
-      font-size: 14vw;
-      font-weight: 800;
-    }
-    #games-right {
-      padding-left: 3vw;
-      text-align: left;
-      font-size: 14vw;
-      font-weight: 800;
+    #top-left, #top-right {
+      flex: 1;
+      display: flex;
     }
     #points-left, #points-right {
       margin-top: -3vw;
@@ -78,14 +72,20 @@
 </head>
 <body tabindex="0">
 <div id="left">
-  <div id="games-left">0</div>
+  <div id="top-left">
+    <div id="serve-left">⟍</div>
+    <div id="games-left">0</div>
+  </div>
   <div id="points-left">0</div>
 </div>
 <div id="divider">
   <video id="keepalive" autoplay playsinline muted loop></video>
 </div>
 <div id="right">
-  <div id="games-right">0</div>
+  <div id="top-right">
+    <div id="games-right">0</div>
+    <div id="serve-right">⟋</div>
+  </div>
   <div id="points-right">0</div>
 </div>
 <div id="info">
