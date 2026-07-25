@@ -73,8 +73,8 @@
 <body tabindex="0">
 <div id="left">
   <div id="top-left">
-    <div id="serve-left">⟍</div>
     <div id="games-left">0</div>
+    <div id="serve-left"></div>
   </div>
   <div id="points-left">0</div>
 </div>
@@ -83,8 +83,8 @@
 </div>
 <div id="right">
   <div id="top-right">
+    <div id="serve-right"></div>
     <div id="games-right">0</div>
-    <div id="serve-right">⟋</div>
   </div>
   <div id="points-right">0</div>
 </div>
@@ -142,6 +142,9 @@
     document.getElementById('games-right').textContent = state.games[1];
     document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
     document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
+    const serve = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
+    document.getElementById('serve-left').textContent = state.serving === 0 ? serve : '';
+    document.getElementById('serve-right').textContent = state.serving === 1 ? serve : '';
   }
   render();
 
