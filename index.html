@@ -27,6 +27,7 @@
       -webkit-user-select: none;
     }
     #left, #right {
+      background: blue;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -144,8 +145,8 @@
     document.getElementById('points-right').textContent = POINTS[state.points[1]];
     document.getElementById('games-left').textContent = state.games[0];
     document.getElementById('games-right').textContent = state.games[1];
-    document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
-    document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
+    //document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
+    //document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
     const serve = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
     document.getElementById('serve-left').textContent = state.serving === 0 ? serve : '';
     document.getElementById('serve-right').textContent = state.serving === 1 ? serve : '';
