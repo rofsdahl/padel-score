@@ -108,7 +108,7 @@
   let style = 0;
   
   function swapStyle() {
-    style = 1 - style;
+    style = (style + 1) % 4;
     render();
   }
 
@@ -152,10 +152,7 @@
     document.getElementById('points-right').textContent = POINTS[state.points[1]];
     document.getElementById('games-left').textContent = state.games[0];
     document.getElementById('games-right').textContent = state.games[1];
-    const serve = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
-    document.getElementById('serve-left').textContent = state.serving === 0 ? serve : '';
-    document.getElementById('serve-right').textContent = state.serving === 1 ? serve : '';
-    if (style === 0) {
+    if (style === 0 || style === 2) {
       document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
       document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
     }
@@ -163,6 +160,10 @@
       document.getElementById('left').style.background = 'blue';
       document.getElementById('right').style.background = 'blue';
     }
+    const showDir = style === 0 || style === 1;
+    const dir = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
+    document.getElementById('serve-left').textContent = showDir && state.serving === 0 ? dir : '';
+    document.getElementById('serve-right').textContent = showDir && state.serving === 1 ? dir : '';
   }
   render();
 
