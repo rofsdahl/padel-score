@@ -63,8 +63,6 @@
       position: fixed;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      /*max-width: 50vw;*/
-      /*max-height: 50vh;*/
       background: rgba(0,0,0,0.8);
       color: white;
       font-size: 5vw;
@@ -108,7 +106,7 @@
   let history = [];
   let state = freshState(0);
   let colorScheme = 0;
-  let showServeIndicator = true;
+  let showServe = true;
     
   function toggleColorScheme() {
     colorScheme = 1 - colorScheme;
@@ -156,21 +154,15 @@
   }
 
   function render() {
-    document.getElementById('points-left').textContent = POINTS[state.points[0]];
+    document.getElementById('points-left').textContent  = POINTS[state.points[0]];
     document.getElementById('points-right').textContent = POINTS[state.points[1]];
-    document.getElementById('games-left').textContent = state.games[0];
+    document.getElementById('games-left').textContent  = state.games[0];
     document.getElementById('games-right').textContent = state.games[1];
-    if (colorScheme === 0) {
-      document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
-      document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
-    }
-    else {
-      document.getElementById('left').style.background = 'blue';
-      document.getElementById('right').style.background = 'blue';
-    }
+    document.getElementById('left').style.background  = colorScheme === 1 ? 'blue' : (state.serving === 0 ? 'green' : 'red');
+    document.getElementById('right').style.background = colorScheme === 1 ? 'blue' : (state.serving === 1 ? 'green' : 'red');
     const dir = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
-    document.getElementById('serve-left').textContent = showServeIndicator && state.serving === 0 ? dir : '';
-    document.getElementById('serve-right').textContent = showServeIndicator && state.serving === 1 ? dir : '';
+    document.getElementById('serve-left').textContent  = showServe && state.serving === 0 ? dir : '';
+    document.getElementById('serve-right').textContent = showServe && state.serving === 1 ? dir : '';
   }
   render();
 
