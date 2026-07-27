@@ -63,8 +63,8 @@
       position: fixed;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      max-width: 50vw;
-      max-height: 50vh;
+      /*max-width: 50vw;*/
+      /*max-height: 50vh;*/
       background: rgba(0,0,0,0.8);
       color: white;
       font-size: 5vw;
@@ -179,7 +179,7 @@
   function showInfo() {
     const info = document.getElementById('info');
     info.style.opacity = '1';
-    info.style.display = 'flex';
+    info.style.display = 'inline-flex';
     clearTimeout(infoTimer);
       infoTimer = setTimeout(() => {
       info.style.opacity = '0';
