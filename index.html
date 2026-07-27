@@ -59,6 +59,7 @@
     }
     #info {
       display: none;
+      flex-direction: column;
       position: fixed;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -94,10 +95,11 @@
   </div>
   <div id="points-right">0</div>
 </div>
-<div id="info" onclick="swapStyle()">
-  ↑ new match<br/>
-  ← add point →<br/>
-  ↓ undo
+<div id="info">
+  <div onclick="newMatch()">new match (↑)</div>
+  <div onclick="undo()">undo (↓)</div>
+  <div onclick="toggleColorScheme()">color scheme</div>
+  <div onclick="toggleServeIndicator()">serve indicator</div>
 </div>
 
 <script>
@@ -105,10 +107,16 @@
   const POINTS = ['0', '15', '30', '40', 'AD'];
   let history = [];
   let state = freshState(0);
-  let style = 0;
-  
-  function swapStyle() {
-    style = (style + 1) % 4;
+  let colorScheme = 0;
+  let showServeIndicator = true;
+    
+  function toggleColorScheme() {
+    colorScheme = 1 - colorScheme;
+    render();
+  }
+
+  function toggleServeIndicator() {
+    showServeIndicator = !showServeIndicator;
     render();
   }
 
@@ -152,7 +160,7 @@
     document.getElementById('points-right').textContent = POINTS[state.points[1]];
     document.getElementById('games-left').textContent = state.games[0];
     document.getElementById('games-right').textContent = state.games[1];
-    if (style === 0 || style === 2) {
+    if (colorScheme === 0) {
       document.getElementById('left').style.background = state.serving === 0 ? 'green' : 'red';
       document.getElementById('right').style.background = state.serving === 1 ? 'green' : 'red';
     }
@@ -160,10 +168,9 @@
       document.getElementById('left').style.background = 'blue';
       document.getElementById('right').style.background = 'blue';
     }
-    const showDir = style === 0 || style === 1;
     const dir = (state.points[0] + state.points[1]) % 2 === 0 ? '⟋' : '⟍';
-    document.getElementById('serve-left').textContent = showDir && state.serving === 0 ? dir : '';
-    document.getElementById('serve-right').textContent = showDir && state.serving === 1 ? dir : '';
+    document.getElementById('serve-left').textContent = showServeIndicator && state.serving === 0 ? dir : '';
+    document.getElementById('serve-right').textContent = showServeIndicator && state.serving === 1 ? dir : '';
   }
   render();
 
@@ -172,7 +179,7 @@
   function showInfo() {
     const info = document.getElementById('info');
     info.style.opacity = '1';
-    info.style.display = 'block';
+    info.style.display = 'flex';
     clearTimeout(infoTimer);
       infoTimer = setTimeout(() => {
       info.style.opacity = '0';
